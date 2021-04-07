@@ -1,5 +1,9 @@
 package com.store.demo.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Product {
 
 	private Long idProduct;
@@ -10,15 +14,8 @@ public class Product {
 	
 	private int quantity;
 
-	
-	
-	public Product(Long idProduct, String nameProduct, double price, int quantity) {
-		super();
-		this.idProduct = idProduct;
-		this.nameProduct = nameProduct;
-		this.price = price;
-		this.quantity = quantity;
-	}
+	@JsonIgnore
+	private List<DetailOrder> detailProduct;
 
 	public Long getIdProduct() {
 		return idProduct;
@@ -52,13 +49,16 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "Product [idProduct=" + idProduct + ", nameProduct=" + nameProduct + ", price=" + price + ", quantity="
-				+ quantity + "]";
+	public List<DetailOrder> getDetailProduct() {
+		return detailProduct;
 	}
+
+	public void setDetailProduct(List<DetailOrder> detailProduct) {
+		this.detailProduct = detailProduct;
+	}
+
+
+	
 	
 	
 	

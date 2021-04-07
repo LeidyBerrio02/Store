@@ -1,9 +1,8 @@
 package com.store.demo.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,16 +15,10 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
-	/*@GetMapping()
-    public Product getById(){
-        return new Product(5L,"Camare", 3000.0 , 1);
-    }*/
-	
 
-	@GetMapping()
-	private ArrayList<Product> listProducts(){
-		return productService.listProducts();
+	@PostMapping("/create")
+	private Boolean create(@RequestBody Product product){
+		return productService.create(product);
 	}
 	
 }

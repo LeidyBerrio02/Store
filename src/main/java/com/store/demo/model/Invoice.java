@@ -4,6 +4,7 @@ public class Invoice {
 	
 	private Long idInvoice;
 	
+	//total + iva
 	private double total;
 
 	private double homeValue;

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Order {
 
 	private Long idOrder;
@@ -14,18 +16,11 @@ public class Order {
 	
 	private double subtotal;
 
-	private List<Product> products;
+	private String status;
+	
+	private List<DetailOrder> detailOrder;
 	
 	private Invoice invoice;
-	
-	
-
-	public Order(Long idOrder, Date orderDate, double subtotal) {
-		super();
-		this.idOrder = idOrder;
-		this.orderDate = orderDate;
-		this.subtotal = subtotal;
-	}
 
 	public Date getOrderDate() {
 		return orderDate;
@@ -42,13 +37,21 @@ public class Order {
 	public void setSubtotal(double subtotal) {
 		this.subtotal = subtotal;
 	}
-
-	public List<Product> getProducts() {
-		return products;
+	
+	public String getStatus() {
+		return status;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public List<DetailOrder> getDetailOrder() {
+		return detailOrder;
+	}
+
+	public void setDetailOrder(List<DetailOrder> detailOrder) {
+		this.detailOrder = detailOrder;
 	}
 
 	public Long getIdOrder() {

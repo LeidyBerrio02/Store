@@ -5,16 +5,14 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.store.demo.Repository.ClientRepository;
 import com.store.demo.model.Client;
+import com.store.demo.repository.Data;
 
 @Service
 public class ClientServiceImp implements ClientService{
 
 	@Autowired
-	private ClientRepository clientRepository;
-	
-	ArrayList<Client> listClient = new ArrayList<Client>();
+	private Data clientRepository;
 	
 	@Override
 	public ArrayList<Client> listClients() {
@@ -25,7 +23,7 @@ public class ClientServiceImp implements ClientService{
 	@Override
 	public Boolean create(Client client) {
 		if (client != null) {
-			listClient.add(client);
+			Data.clientList.add(client);
 			return true;
 		}
 		return false;
