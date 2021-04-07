@@ -21,6 +21,7 @@ public class ProductController {
     public Product getById(){
         return new Product(5L,"Camare", 3000.0 , 1);
     }*/
+	
 
 	@GetMapping()
 	private ArrayList<Product> listProducts(){

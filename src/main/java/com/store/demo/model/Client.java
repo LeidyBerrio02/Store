@@ -14,7 +14,7 @@ public class Client {
 	private List<Order> orders;
 	
 	
-	public Client( Long idClient,  String cc,  String name,  String address) {
+	public Client(Long idClient,  String cc,  String name,  String address) {
 		super();
 		this.idClient = idClient;
 		this.cc = cc;

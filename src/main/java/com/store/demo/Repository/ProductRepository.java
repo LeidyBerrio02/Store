@@ -9,9 +9,9 @@ import com.store.demo.model.Product;
 @Repository
 public class ProductRepository {
 
-	public static ArrayList<Product> list() {
+	public ArrayList<Product> list() {
 		ArrayList<Product> productList = new ArrayList<>();
-		Product product[] = new Product[10];
+		//Product product[] = new Product[10];
 		
 		Product product1 = new Product(1L,"TV",75000.0,2);
 		Product product2 = new Product(2L,"iPhone",55000.0,5);

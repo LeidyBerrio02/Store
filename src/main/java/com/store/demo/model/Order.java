@@ -17,6 +17,15 @@ public class Order {
 	private List<Product> products;
 	
 	private Invoice invoice;
+	
+	
+
+	public Order(Long idOrder, Date orderDate, double subtotal) {
+		super();
+		this.idOrder = idOrder;
+		this.orderDate = orderDate;
+		this.subtotal = subtotal;
+	}
 
 	public Date getOrderDate() {
 		return orderDate;
