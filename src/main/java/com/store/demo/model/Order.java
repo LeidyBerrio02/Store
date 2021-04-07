@@ -2,23 +2,20 @@ package com.store.demo.model;
 
 import java.util.Date;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import javax.persistence.*;
-
-@Table(name="order")
-@Entity(name="order")
 public class Order {
 
-	@Column(name="orderDate")
+	private Long idOrder;
+
+	@DateTimeFormat(iso = ISO.DATE)
 	private Date orderDate;
 	
-	@Column(name="subtotal")
 	private double subtotal;
-	
-	@Column(name="products")
+
 	private List<Product> products;
 	
-	@Column(name="invoice")
 	private Invoice invoice;
 
 	public Date getOrderDate() {
@@ -43,6 +40,22 @@ public class Order {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public Long getIdOrder() {
+		return idOrder;
+	}
+
+	public void setIdOrder(Long idOrder) {
+		this.idOrder = idOrder;
+	}
+
+	public Invoice getInvoice() {
+		return invoice;
+	}
+
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
 	}
 	
 	

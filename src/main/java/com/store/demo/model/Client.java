@@ -1,24 +1,34 @@
 package com.store.demo.model;
 
 import java.util.List;
-
-import javax.persistence.*;
-
-@Table(name="client")
-@Entity(name="client")
 public class Client {
+
+	private Long idClient;
 	
-	@Column(name="cc")
 	private String cc;
-	
-	@Column(name="name")
+
 	private String name;
-	
-	@Column(name="address")
+
 	private String address;
 	
-	@Column(name="orders")
 	private List<Order> orders;
+	
+	
+	public Client( Long idClient,  String cc,  String name,  String address) {
+		super();
+		this.idClient = idClient;
+		this.cc = cc;
+		this.name = name;
+		this.address = address;
+	}
+
+	public Long getIdClient() {
+		return idClient;
+	}
+
+	public void setIdClient(Long idClient) {
+		this.idClient = idClient;
+	}
 
 	public String getCc() {
 		return cc;
@@ -50,6 +60,12 @@ public class Client {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+	@Override
+	public String toString() {
+		return "Client [idClient=" + idClient + ", cc=" + cc + ", name=" + name + ", address=" + address + ", orders="
+				+ orders + "]";
 	}
 	
 	

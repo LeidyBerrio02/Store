@@ -1,15 +1,11 @@
 package com.store.demo.model;
 
-import javax.persistence.*;
-
-@Table(name="invoice")
-@Entity(name="invoice")
 public class Invoice {
 	
-	@Column(name="total")
+	private Long idInvoice;
+	
 	private double total;
 
-	@Column(name="homeValue")
 	private double homeValue;
 
 	public double getTotal() {
@@ -26,6 +22,14 @@ public class Invoice {
 
 	public void setHomeValue(double homeValue) {
 		this.homeValue = homeValue;
+	}
+
+	public Long getIdInvoice() {
+		return idInvoice;
+	}
+
+	public void setIdInvoice(Long idInvoice) {
+		this.idInvoice = idInvoice;
 	}
 	
 	

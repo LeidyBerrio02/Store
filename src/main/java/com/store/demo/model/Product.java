@@ -1,19 +1,32 @@
 package com.store.demo.model;
 
-import javax.persistence.*;
-
-@Table(name="product")
-@Entity(name="product")
 public class Product {
 
-	@Column(name="nameProduct")
-	private String nameProduct;
+	private Long idProduct;
 	
-	@Column(name="price")
+	private String nameProduct;
+
 	private double price;
 	
-	@Column(name="quantity")
 	private int quantity;
+
+	
+	
+	public Product(Long idProduct, String nameProduct, double price, int quantity) {
+		super();
+		this.idProduct = idProduct;
+		this.nameProduct = nameProduct;
+		this.price = price;
+		this.quantity = quantity;
+	}
+
+	public Long getIdProduct() {
+		return idProduct;
+	}
+
+	public void setIdProduct(Long idProduct) {
+		this.idProduct = idProduct;
+	}
 
 	public String getNameProduct() {
 		return nameProduct;
@@ -37,6 +50,14 @@ public class Product {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Product [idProduct=" + idProduct + ", nameProduct=" + nameProduct + ", price=" + price + ", quantity="
+				+ quantity + "]";
 	}
 	
 	
