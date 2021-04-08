@@ -24,7 +24,7 @@ public class ProductController {
 	
 	@GetMapping()
 	public ArrayList<Product> list() {
-		return Data.listP();
+		return productService.listP();
 	}
 
 	@PostMapping("/create")

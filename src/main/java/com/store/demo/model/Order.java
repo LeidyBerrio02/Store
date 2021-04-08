@@ -2,16 +2,18 @@ package com.store.demo.model;
 
 import java.util.Date;
 import java.util.List;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Order {
 
 	private Long idOrder;
 
-	@DateTimeFormat(iso = ISO.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
+	//@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
 	private Date orderDate;
 	
 	private double subtotal;
@@ -22,6 +24,7 @@ public class Order {
 	
 	private Invoice invoice;
 
+	
 	public Date getOrderDate() {
 		return orderDate;
 	}
@@ -68,8 +71,6 @@ public class Order {
 
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
-	}
-	
-	
+	}	
 	
 }

@@ -12,13 +12,7 @@ import com.store.demo.repository.Data;
 public class ClientServiceImp implements ClientService{
 
 	@Autowired
-	private Data clientRepository;
-	
-	@Override
-	public ArrayList<Client> listClients() {
-		// TODO Auto-generated method stub
-		return clientRepository.listClient();
-	}
+	private OrderService orderService;
 
 	@Override
 	public Boolean createClient(Client client) {
@@ -28,7 +22,23 @@ public class ClientServiceImp implements ClientService{
 		}
 		return false;
 	}
+	
+	
+	public ArrayList<Client> listClients(){
 
+		Client client1 = new Client();
+		client1.setIdClient(1L);
+		client1.setCc("12345");
+		client1.setName("Ana");
+		client1.setAddress("Cr 11# 14-08");
+		client1.setOrders(orderService.orders());
+		
+		Data.clientList.add(client1);		
+		
+		return Data.clientList;
+	}
+	
+	
 	
 	
 }

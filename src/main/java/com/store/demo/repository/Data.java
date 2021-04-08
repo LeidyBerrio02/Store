@@ -1,7 +1,6 @@
 package com.store.demo.repository;
 
 import java.util.ArrayList;
-import java.util.Date;
 import com.store.demo.model.Client;
 import com.store.demo.model.DetailOrder;
 import com.store.demo.model.Invoice;
@@ -22,11 +21,12 @@ public class Data {
 	public static ArrayList<DetailOrder> detailList2 = new ArrayList<DetailOrder>();
 	public static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
 
-	public static Product product1 = new Product(1l,"TV",1000.0,4);
+	public static Product product1 = new Product(1l,"TV",75000.0,4);
 	public static Product product2 = new Product(2l,"Headphones",60000.0,3);
 	public static Product product3 = new Product(3l,"Xiami redmi 8",20000.0,5);
 	public static Product product4 = new Product(4l,"iPhone",30000.0,2);
 
+	/*
 	public static ArrayList<Product> listP() {
 		productList.add(product1);
 		productList.add(product2);
@@ -35,7 +35,76 @@ public class Data {
 		return productList;
 	}
 	
-	public ArrayList<Client> listClient() {
+	public static ArrayList<Order> orders() {
+		Date smp = null;
+		try {
+			smp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse("2020-11-11 12:22:22.333");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Order list 1, client 1
+		
+		Order order1 = new Order();
+		order1.setIdOrder(1L);
+		order1.setOrderDate(smp);
+		order1.setStatus("Active");
+		
+
+		/////////////////// detail
+		DetailOrder detailOrder = new DetailOrder();
+		detailOrder.setId(1l);
+		detailOrder.setOrder(order1);
+		detailOrder.setProduct(product1);
+		detailOrder.setQuantityOrder(1);
+		double total = 0;
+		total = total + (product1.getPrice() * detailOrder.getQuantityOrder()) ;
+		detailOrder.setTotal(total);
+		
+		//
+		DetailOrder detailOrder1 = new DetailOrder();
+		detailOrder1.setId(2l);
+		detailOrder1.setOrder(order1);
+		detailOrder1.setProduct(product4);
+		detailOrder1.setQuantityOrder(2);
+		double total2 = 0;
+		total2 = (product4.getPrice() * detailOrder1.getQuantityOrder());
+		detailOrder1.setTotal(total2);
+		total = total + total2;
+		detailList.add(detailOrder);
+		detailList.add(detailOrder1);
+		
+		order1.setSubtotal((product1.getPrice() * detailOrder.getQuantityOrder())+ (product4.getPrice() * detailOrder1.getQuantityOrder()));
+		order1.setDetailOrder(detailList);
+		
+		//invoice 
+		Invoice in = invoice(order1 , total);
+		order1.setInvoice(in);
+		
+		//Add Order
+		orderList.add(order1);
+		
+		return orderList;
+	}
+	
+	public static Invoice invoice(Order order1, double total) {
+		Invoice invoice = new Invoice();
+		invoice.setIdInvoice(1l);
+		
+		var iva  = order1.getSubtotal() * 0.19;
+		invoice.setSubTotalIva(order1.getSubtotal()+ iva);
+		
+		if	(order1.getSubtotal() >= 100000) {
+			invoice.setHomeValue(0);
+		}else {
+			invoice.setHomeValue(1000.0);
+		}
+		invoice.setTotal(total+ iva +invoice.getHomeValue());
+		return invoice;
+	}
+	
+	public ArrayList<Client> listClient(){
 
 		/* Products List
 		Product product1 = new Product();
@@ -68,65 +137,13 @@ public class Data {
 		productList.add(product4);*/
 
 		
-		// Order list 1, client 1
 		
-		Order order1 = new Order();
-		order1.setIdOrder(1L);
-		order1.setOrderDate(new Date());
-
-		order1.setStatus("Active");
-		
-
-		/////////////////// detail
-		DetailOrder detailOrder = new DetailOrder();
-		detailOrder.setId(1l);
-		detailOrder.setOrder(order1);
-		detailOrder.setProduct(product1);
-		detailOrder.setQuantityOrder(1);
-		double total = 0;
-		total = total + (product1.getPrice() * detailOrder.getQuantityOrder()) ;
-		detailOrder.setTotal(total);
-		
-		//
-		DetailOrder detailOrder1 = new DetailOrder();
-		detailOrder1.setId(2l);
-		detailOrder1.setOrder(order1);
-		detailOrder1.setProduct(product4);
-		detailOrder1.setQuantityOrder(2);
-		total = total + (product4.getPrice() * detailOrder1.getQuantityOrder());
-		detailOrder1.setTotal(total);
-		
-		detailList.add(detailOrder);
-		detailList.add(detailOrder1);
-		
-		order1.setSubtotal((product1.getPrice() * detailOrder.getQuantityOrder())+ (product4.getPrice() * detailOrder1.getQuantityOrder()));
-		order1.setDetailOrder(detailList);
-		
-		//invoice 
-		Invoice invoice = new Invoice();
-		invoice.setIdInvoice(1l);
-		
-		var iva  = order1.getSubtotal() * 0.19;
-		invoice.setSubTotalIva(order1.getSubtotal()+ iva);
-		
-		if	(order1.getSubtotal() >= 100000) {
-			invoice.setHomeValue(0);
-		}else {
-			invoice.setHomeValue(1000.0);
-		}
-		
-		invoice.setTotal(total+ iva +invoice.getHomeValue());
-		order1.setInvoice(invoice);
-		
-		//Add Order
-		orderList.add(order1);
-		
-		Client client1 = new Client();
+		/*Client client1 = new Client();
 		client1.setIdClient(1L);
 		client1.setCc("12345");
 		client1.setName("Ana");
 		client1.setAddress("Cr 11# 14-08");
-		client1.setOrders(orderList);
+		client1.setOrders(orders());
 		
 		clientList.add(client1);
 		
@@ -169,7 +186,7 @@ public class Data {
 		
 		clientList.add(client2);*/
 
-		return clientList;
+		/*return clientList;
 	}
 	
 	
