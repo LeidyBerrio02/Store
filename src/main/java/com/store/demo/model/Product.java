@@ -12,10 +12,23 @@ public class Product {
 
 	private double price;
 	
-	private int quantity;
+	private int quantityStock;
 
 	@JsonIgnore
 	private List<DetailOrder> detailProduct;
+
+	public Product() {
+		
+	}
+	
+	
+	public Product(Long idProduct, String nameProduct, double price, int quantityStock) {
+		super();
+		this.idProduct = idProduct;
+		this.nameProduct = nameProduct;
+		this.price = price;
+		this.quantityStock = quantityStock;
+	}
 
 	public Long getIdProduct() {
 		return idProduct;
@@ -41,13 +54,17 @@ public class Product {
 		this.price = price;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	
+
+	public int getQuantityStock() {
+		return quantityStock;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+
+	public void setQuantityStock(int quantityStock) {
+		this.quantityStock = quantityStock;
 	}
+
 
 	public List<DetailOrder> getDetailProduct() {
 		return detailProduct;

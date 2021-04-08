@@ -10,6 +10,8 @@ public class DetailOrder {
 	private Order order;
 	
 	private Product product;
+	
+	private int quantityOrder;
 
 	private double total;
 
@@ -35,6 +37,16 @@ public class DetailOrder {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+	
+
+
+	public int getQuantityOrder() {
+		return quantityOrder;
+	}
+
+	public void setQuantityOrder(int quantityOrder) {
+		this.quantityOrder = quantityOrder;
 	}
 
 	public double getTotal() {

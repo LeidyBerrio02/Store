@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +22,10 @@ public class ClientController {
 	@GetMapping()
 	public ArrayList<Client> listClients(){
 		return clientService.listClients();
+	}
+	
+	@PostMapping("/update")
+	public Boolean createClient(@RequestBody Client client) {
+		return clientService.createClient(client);
 	}
 }

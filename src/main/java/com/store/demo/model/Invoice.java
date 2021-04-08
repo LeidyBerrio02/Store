@@ -5,16 +5,26 @@ public class Invoice {
 	private Long idInvoice;
 	
 	//total + iva
+	private double subTotalIva;
+	
+	private double homeValue; 
+	
 	private double total;
 
-	private double homeValue;
-
-	public double getTotal() {
-		return total;
+	public Long getIdInvoice() {
+		return idInvoice;
 	}
 
-	public void setTotal(double total) {
-		this.total = total;
+	public void setIdInvoice(Long idInvoice) {
+		this.idInvoice = idInvoice;
+	}
+
+	public double getSubTotalIva() {
+		return subTotalIva;
+	}
+
+	public void setSubTotalIva(double subTotalIva) {
+		this.subTotalIva = subTotalIva;
 	}
 
 	public double getHomeValue() {
@@ -25,13 +35,13 @@ public class Invoice {
 		this.homeValue = homeValue;
 	}
 
-	public Long getIdInvoice() {
-		return idInvoice;
+	public double getTotal() {
+		return total;
 	}
 
-	public void setIdInvoice(Long idInvoice) {
-		this.idInvoice = idInvoice;
+	public void setTotal(double total) {
+		this.total = total;
 	}
-	
+
 	
 }

@@ -21,7 +21,7 @@ public class ClientServiceImp implements ClientService{
 	}
 
 	@Override
-	public Boolean create(Client client) {
+	public Boolean createClient(Client client) {
 		if (client != null) {
 			Data.clientList.add(client);
 			return true;
