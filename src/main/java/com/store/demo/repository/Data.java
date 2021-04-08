@@ -22,11 +22,18 @@ public class Data {
 	public static ArrayList<DetailOrder> detailList2 = new ArrayList<DetailOrder>();
 	public static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
 
-	public static Product product1 = new Product(1l,"TV",70000.0,4);
+	public static Product product1 = new Product(1l,"TV",1000.0,4);
 	public static Product product2 = new Product(2l,"Headphones",60000.0,3);
 	public static Product product3 = new Product(3l,"Xiami redmi 8",20000.0,5);
 	public static Product product4 = new Product(4l,"iPhone",30000.0,2);
 
+	public static ArrayList<Product> listP() {
+		productList.add(product1);
+		productList.add(product2);
+		productList.add(product3);
+		productList.add(product4);
+		return productList;
+	}
 	
 	public ArrayList<Client> listClient() {
 
@@ -54,11 +61,11 @@ public class Data {
 		product4.setNameProduct("iPhone");
 		product4.setPrice(55000.0);
 		product4.setQuantity(3);*/
-		
-		productList.add(product1);
+
+		/*productList.add(product1);
 		productList.add(product2);
 		productList.add(product3);
-		productList.add(product4);
+		productList.add(product4);*/
 
 		
 		// Order list 1, client 1
@@ -125,7 +132,7 @@ public class Data {
 		
 		//////////////////////////////////////// detail////// other Order
 		
-		// Order list 1, client 1
+		/* Order list 2, client 2
 		
 		Order order2 = new Order();
 		order2.setIdOrder(2L);
@@ -160,9 +167,21 @@ public class Data {
 		client2.setAddress("Cr 24# 20-1");
 		client2.setOrders(orderList2);
 		
-		clientList.add(client2);
+		clientList.add(client2);*/
 
 		return clientList;
 	}
+	
+	
+	/*public boolean search (Product product) {
+		boolean confir = null != null;
+		for (Product pro : productList) {
+			if (pro.getIdProduct()==product.getIdProduct()) {
+				confir = true;
+			}
+			confir =  false;
+		}
+		return confir;
+	}*/
 
 }
