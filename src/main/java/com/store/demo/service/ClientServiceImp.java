@@ -70,11 +70,11 @@ public class ClientServiceImp implements ClientService {
 		if (GenerateDate.validateDate(Data.order1,5)){
 		Client clientArray = new Client();
 		if	(client != null) {
-			searchClient(client);
-			clientArray.setIdClient(client.getIdClient());
+			clientArray.setIdClient(searchClient(client));
 			clientArray.setName(client.getName());
 			clientArray.setCc(client.getCc());
 			clientArray.setAddress(client.getAddress());
+			clientArray.setOrders(orderService.orders());
 			//Data.clientList.add(clientArray);
 			if(Data.order1.getStatus()=="Delete") {
 				bill();

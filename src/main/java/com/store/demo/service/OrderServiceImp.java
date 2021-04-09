@@ -12,6 +12,7 @@ import com.store.demo.model.Invoice;
 import com.store.demo.model.Order;
 import com.store.demo.model.Product;
 import com.store.demo.util.Data;
+import com.store.demo.util.GenerateDate;
 @Service
 public class OrderServiceImp implements OrderService {
 	
@@ -34,7 +35,7 @@ public class OrderServiceImp implements OrderService {
 		
 		Data.order1.setIdOrder(1L);
 		//Fecha ingresada Data.order1.setOrderDate(smp);
-		Data.order1.setOrderDate(smp);
+		Data.order1.setOrderDate(new Date());
 		//si active se cambia por "Delete" significa que se elimino el pedido y se le devolvera el 10
 		Data.order1.setStatus("Active");
 		
@@ -129,9 +130,11 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder2.getProduct().setQuantityStock(rest3);
 	}
 
-	public void updateOrder(Order order, Long idOrder) {
+	@Autowired
+	public Boolean updateOrder(Order order, Long idOrder) {
+		if(GenerateDate.validateDate(order, 5)){
 		Order orderDB = new Order();
-		if	(Data.order1.getIdOrder().equals(idOrder)) {
+		if	(Data.order1.getIdOrder().equals(idOrder) && Data.order1.getSubtotal() > order.getSubtotal()) {
 			orderDB.setIdOrder(idOrder);
 			orderDB.setOrderDate(new Date());
 			orderDB.setSubtotal(order.getSubtotal());
@@ -140,8 +143,9 @@ public class OrderServiceImp implements OrderService {
 			orderDB.setDetailOrder(order.getDetailOrder());
 			Data.orderList.set(0, orderDB);
 		}
+		return true;
 	}
+	return false;
+}
 	
-	
-
 }
