@@ -93,4 +93,19 @@ public class OrderServiceImp implements OrderService {
 		invoice.setTotal(total+ iva +invoice.getHomeValue());
 		return invoice;
 	}
+	
+	public Boolean validateDate(Order order , int time) {
+		int comparateMS = 3600000 * time ;
+		Date dateActual = new Date();
+		Date dateOrder = order.getOrderDate();
+		if(dateActual.getTime() - dateOrder.getTime() < comparateMS) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	
+	
 }

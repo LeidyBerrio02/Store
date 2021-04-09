@@ -2,6 +2,7 @@ package com.store.demo.service;
 
 import java.util.ArrayList;
 
+import com.store.demo.model.Order;
 import com.store.demo.model.Product;
 
 public interface ProductService {

@@ -21,10 +21,15 @@ public class Data {
 	public static ArrayList<DetailOrder> detailList2 = new ArrayList<DetailOrder>();
 	public static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
 
-	public static Product product1 = new Product(1l,"TV",75000.0,4);
+	public static Product product1 = new Product(1l,"TV",75000.0,5);
 	public static Product product2 = new Product(2l,"Headphones",60000.0,3);
 	public static Product product3 = new Product(3l,"Xiami redmi 8",20000.0,5);
-	public static Product product4 = new Product(4l,"iPhone",30000.0,2);
+	public static Product product4 = new Product(4l,"iPhone",30000.0,3);
+	public static DetailOrder detailOrder = new DetailOrder();
+	public static DetailOrder detailOrder1 = new DetailOrder();
+	public static DetailOrder detailOrder2 = new DetailOrder();
+	public static Order order1 = new Order();
+	public static Invoice invoice = new Invoice();
 
 	/*
 	public static ArrayList<Product> listP() {

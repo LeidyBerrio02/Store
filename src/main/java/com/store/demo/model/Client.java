@@ -11,10 +11,9 @@ public class Client {
 	private String name;
 
 	private String address;
-	
+
 	private List<Order> orders;
-
-
+	
 	public Long getIdClient() {
 		return idClient;
 	}

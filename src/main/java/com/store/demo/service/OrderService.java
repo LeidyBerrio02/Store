@@ -6,7 +6,7 @@ import com.store.demo.model.Order;
 
 public interface OrderService {
 	
-	 ArrayList<Order> orders();
+	ArrayList<Order> orders();
 	Boolean create(Order order);
 
 }
