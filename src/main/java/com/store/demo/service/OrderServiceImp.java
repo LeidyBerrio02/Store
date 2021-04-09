@@ -27,7 +27,7 @@ public class OrderServiceImp implements OrderService {
 	public ArrayList<Order> orders() {
 		Date smp = null;
 		try {
-			smp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse("2020-11-11 12:22:22.333");
+			smp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse("2021-03-08 05:30:22.333");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,7 +80,8 @@ public class OrderServiceImp implements OrderService {
 	}
 	
 
-	public static Invoice invoice(Order order1, double total) {
+	@Override
+	public Invoice invoice(Order order1, double total) {
 		
 		Data.invoice.setIdInvoice(1l);
 		

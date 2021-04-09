@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.store.demo.model.Client;
+import com.store.demo.model.DetailOrder;
 import com.store.demo.model.Order;
 import com.store.demo.model.Product;
 import com.store.demo.repository.Data;
@@ -51,29 +52,22 @@ public class ClientServiceImp implements ClientService{
 		
 		return false;
 	}
-	
-	public Boolean updateProduct(Product product, Long idProduct) {		
-		Product productArray = new Product();
-		if(product != null) {
-		
-			productArray.setIdProduct(idProduct);
-			productArray.setNameProduct(product.getNameProduct());
-			productArray.setPrice(product.getPrice());
-			productArray.setQuantityStock(product.getQuantityStock());
-			Data.productList.add(productArray);
-			
-			return true;
-		}
-		return false;
-	}
 
 
 	@Override
-	public Client updateClient(Client client) {
-		if	(orderService.validateDate(Data.order1, 5)) {
+	public void updateClient(Client client) {
+		if(orderService.validateDate(Data.order1,5)) {
 		Data.clientList.add(client);
+		Data.orderList.add(Data.order1);
 		}
-		return null;
+	}
+	
+	@Override
+	public void changeStatus() {
+		if(orderService.validateDate(Data.order1, 12)) {
+		Data.order1.setStatus("DELETE");
+		Data.orderList.add(Data.order1);
+		}
 	}
 	
 	

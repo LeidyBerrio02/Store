@@ -1,6 +1,7 @@
 package com.store.demo.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.store.demo.model.Client;
-import com.store.demo.model.Product;
+import com.store.demo.model.Order;
 import com.store.demo.repository.Data;
 import com.store.demo.service.ClientService;
 import com.store.demo.service.OrderService;
@@ -37,11 +38,16 @@ public class ClientController {
 		return clientService.createClient(client);
 	}
 	
-	@PutMapping("/updateProducts")
+	@PutMapping("/update")
 	public void addProductNew(@RequestBody Client client) {
 		clientService.updateClient(client);
-
 	}
+	
+	@PutMapping("/delete")
+	public void delete() {
+		clientService.changeStatus();
+	}
+	
 	
 	/*@GetMapping("/addProductInlist")
 	public void addProductExisted() {
