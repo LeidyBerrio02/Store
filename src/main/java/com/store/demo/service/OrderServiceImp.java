@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.store.demo.model.Invoice;
 import com.store.demo.model.Order;
 import com.store.demo.model.Product;
-import com.store.demo.repository.Data;
+import com.store.demo.util.Data;
 @Service
 public class OrderServiceImp implements OrderService {
 	
@@ -34,6 +34,7 @@ public class OrderServiceImp implements OrderService {
 		Data.order1.setIdOrder(1L);
 		//Fecha ingresada Data.order1.setOrderDate(smp);
 		Data.order1.setOrderDate(new Date());
+		//si active se cambia por "Delete" significa que se elimino el pedido y se le devolvera el 10
 		Data.order1.setStatus("Active");
 		
 
@@ -72,6 +73,7 @@ public class OrderServiceImp implements OrderService {
 		Invoice in = invoiceService.invoice(total(product, product2, newProduct));
 		Data.order1.setInvoice(in);
 		
+		//descuenta los productos del inventario del almacen que fueron enviados al pedido (Order)
 		discountQuantity();
 						
 		//Add Order

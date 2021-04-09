@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.store.demo.model.Client;
-import com.store.demo.repository.Data;
-import com.store.demo.repository.GenerateDate;
+import com.store.demo.util.Data;
+import com.store.demo.util.GenerateDate;
 
 @Service
 public class ClientServiceImp implements ClientService {
@@ -26,20 +26,15 @@ public class ClientServiceImp implements ClientService {
 	}
 
 	@Override
+	public boolean addClient() {
+		return Data.clientList.add(Data.client1);
+	}
+	
+	@Override
 	public ArrayList<Client> listClients() {
-
-		Data.client1.setIdClient(1L);
-		Data.client1.setCc("12345");
-		Data.client1.setName("Ana");
-		Data.client1.setAddress("Cr 11# 14-08");
-		Data.client1.setOrders(orderService.orders());
-		if(Data.order1.getStatus()=="Delete") {
+		/*if(Data.order1.getStatus()=="Delete") {
 			bill();
-		}
-		
-		Data.clientList.add(Data.client1);
-		
-
+		}*/
 		return Data.clientList;
 	}
 	
@@ -95,5 +90,6 @@ public class ClientServiceImp implements ClientService {
 		}
 		return null;
 	}
+
 
 }

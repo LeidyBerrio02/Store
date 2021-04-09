@@ -3,7 +3,7 @@ package com.store.demo.service;
 import org.springframework.stereotype.Service;
 
 import com.store.demo.model.Invoice;
-import com.store.demo.repository.Data;
+import com.store.demo.util.Data;
 
 @Service
 public class InvoiceServiceImp implements InvoiceService {

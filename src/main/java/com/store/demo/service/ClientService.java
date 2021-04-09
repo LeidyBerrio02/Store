@@ -6,6 +6,7 @@ import com.store.demo.model.Client;
 
 public interface ClientService {
 
+	boolean addClient();
 	ArrayList<Client> listClients();
 	Boolean createClient(Client client);
 	Boolean updateClient(Client client);

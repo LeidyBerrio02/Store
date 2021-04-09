@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
 import com.store.demo.model.Product;
-import com.store.demo.repository.Data;
+import com.store.demo.util.Data;
 
 @Service
 public class ProductServiceImp implements ProductService{

@@ -1,17 +1,20 @@
-package com.store.demo.repository;
+package com.store.demo.util;
 
 import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.store.demo.model.Client;
 import com.store.demo.model.DetailOrder;
 import com.store.demo.model.Invoice;
 import com.store.demo.model.Order;
 import com.store.demo.model.Product;
-
-import org.springframework.stereotype.Repository;
-
-@Repository
+import com.store.demo.service.OrderService;
 
 public class Data {
+	
+	@Autowired
+	private static OrderService orderService;
 
 	public static ArrayList<Client> clientList = new ArrayList<Client>();
 	public static ArrayList<Order> orderList = new ArrayList<Order>();
@@ -23,9 +26,9 @@ public class Data {
 
 	public static Product product1 = new Product(1l,"TV",75000.0,5);
 	public static Product product2 = new Product(2l,"Headphones",60000.0,3);
-	public static Product product3 = new Product(3l,"Xiami redmi 8",20000.0,5);
+	public static Product product3 = new Product(3l,"Xiami redmi 8",20000.0,2);
 	public static Product product4 = new Product(4l,"iPhone",30000.0,3);
-	public static Client client1 = new Client();
+	public static Client client1 = new Client(1l,"12345", "Ana","Cr 11# 14-08", orderService.orders());
 	public static DetailOrder detailOrder = new DetailOrder();
 	public static DetailOrder detailOrder1 = new DetailOrder();
 	public static DetailOrder detailOrder2 = new DetailOrder();
