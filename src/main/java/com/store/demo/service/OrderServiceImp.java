@@ -2,8 +2,7 @@ package com.store.demo.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 import org.springframework.stereotype.Service;
 
@@ -34,27 +33,30 @@ public class OrderServiceImp implements OrderService {
 		
 
 		/////////////////// detail
-		
 		Data.detailOrder.setId(1l);
 		Data.detailOrder.setOrder(Data.order1);
-		Data.detailOrder.setProduct(Data.product1);
 		Data.detailOrder.setQuantityOrder(1);
-				
+		//Data.detailOrder.setProduct(Data.product1);
+		Data.detailOrder.setProduct(new Product());
 		//
 		
 		Data.detailOrder1.setId(2l);
 		Data.detailOrder1.setOrder(Data.order1);
-		Data.detailOrder1.setProduct(Data.product4);
 		Data.detailOrder1.setQuantityOrder(2);
+		Data.detailOrder1.setProduct(new Product());
 		
 		Data.detailList.add(Data.detailOrder);
 		Data.detailList.add(Data.detailOrder1);
+
 		
-		Data.order1.setSubtotal((Data.product1.getPrice() * Data.detailOrder.getQuantityOrder())+ (Data.product4.getPrice() * Data.detailOrder1.getQuantityOrder()));
+		Data.order1.setSubtotal(subtotal());
 		Data.order1.setDetailOrder(Data.detailList);
 		
+		double product = Data.detailOrder.getProduct().getPrice();
+		double product2 = Data.detailOrder1.getProduct().getPrice();
+		
 		//invoice 
-		Invoice in = invoice(Data.order1 , total(Data.product1, Data.product4) );
+		Invoice in = invoice(Data.order1 , total(product, product2) );
 		Data.order1.setInvoice(in);
 						
 		//Add Order
@@ -63,13 +65,20 @@ public class OrderServiceImp implements OrderService {
 		return Data.orderList;
 	}
 	
-	public double total(Product product, Product product2) {
+	public double subtotal() {
+		double subtotal = 0;
+		subtotal =+ Data.detailOrder.getProduct().getPrice() * Data.detailOrder.getProduct().getQuantityStock();
+		subtotal =+ Data.detailOrder1.getProduct().getPrice() * Data.detailOrder1.getProduct().getQuantityStock();
+		return subtotal;
+	}
+	
+	public double total(double product, double product2) {
 		double total = 0;
-		total = total + (product.getPrice() * Data.detailOrder.getQuantityOrder()) ;
+		total = total + (product * Data.detailOrder.getQuantityOrder()) ;
 		Data.detailOrder.setTotal(total);
 		double total2 = 0;
 		
-		total2 = (product2.getPrice() * Data.detailOrder1.getQuantityOrder());
+		total2 = (product2 * Data.detailOrder1.getQuantityOrder());
 		Data.detailOrder1.setTotal(total2);
 		total = total + total2;
 		
