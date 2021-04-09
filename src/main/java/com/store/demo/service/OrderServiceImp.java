@@ -71,6 +71,8 @@ public class OrderServiceImp implements OrderService {
 		//invoice 
 		Invoice in = invoiceService.invoice(total(product, product2, newProduct));
 		Data.order1.setInvoice(in);
+		
+		discountQuantity();
 						
 		//Add Order
 		Data.orderList.add(Data.order1);
@@ -109,6 +111,21 @@ public class OrderServiceImp implements OrderService {
 		total = total + total2 + total3;
 		
 		return total;
+	}
+	
+	@Override
+	public void discountQuantity() {
+		int rest1 = 0;
+		rest1  = Data.detailOrder.getProduct().getQuantityStock() - Data.detailOrder.getQuantityOrder(); 
+		Data.detailOrder.getProduct().setQuantityStock(rest1);
+		
+		int rest2 = 0;
+		rest1  = Data.detailOrder1.getProduct().getQuantityStock() - Data.detailOrder1.getQuantityOrder(); 
+		Data.detailOrder1.getProduct().setQuantityStock(rest2);
+		
+		int rest3 = 0;
+		rest3 = Data.detailOrder2.getProduct().getQuantityStock() - Data.detailOrder2.getQuantityOrder();
+		Data.detailOrder2.getProduct().setQuantityStock(rest3);
 	}
 	
 }

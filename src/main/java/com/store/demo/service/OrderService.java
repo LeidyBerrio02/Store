@@ -13,4 +13,5 @@ public interface OrderService {
 	double subtotal();
 	double total(double product, double product2, double newProduct);
 	//Boolean validateDate(Order order , int time);
+	void discountQuantity();
 }
