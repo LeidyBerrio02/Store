@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -13,6 +14,9 @@ import com.store.demo.model.Product;
 import com.store.demo.repository.Data;
 @Service
 public class OrderServiceImp implements OrderService {
+	
+	@Autowired
+	private InvoiceService invoiceService;
 
 	@Override
 	public ArrayList<Order> orders() {
@@ -28,7 +32,8 @@ public class OrderServiceImp implements OrderService {
 		
 		
 		Data.order1.setIdOrder(1L);
-		Data.order1.setOrderDate(smp);
+		//Fecha ingresada Data.order1.setOrderDate(smp);
+		Data.order1.setOrderDate(new Date());
 		Data.order1.setStatus("Active");
 		
 
@@ -42,7 +47,7 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder1.setId(2l);
 		Data.detailOrder1.setOrder(Data.order1);
 		Data.detailOrder1.setQuantityOrder(1);
-		Data.detailOrder1.setProduct(Data.product2);
+		Data.detailOrder1.setProduct(Data.product3);
 
 		//En caso de agg nuevo producto
 		Data.detailOrder2.setId(3l);
@@ -64,7 +69,7 @@ public class OrderServiceImp implements OrderService {
 		double newProduct = Data.detailOrder2.getProduct().getPrice();
 		
 		//invoice 
-		Invoice in = invoice(total(product, product2, newProduct));
+		Invoice in = invoiceService.invoice(total(product, product2, newProduct));
 		Data.order1.setInvoice(in);
 						
 		//Add Order
@@ -74,7 +79,7 @@ public class OrderServiceImp implements OrderService {
 		
 	}
 	
-	
+	@Override
 	public double subtotal() {
 		double subt = 0;
 		subt =  Data.detailOrder.getProduct().getPrice() * Data.detailOrder.getQuantityOrder();
@@ -87,6 +92,7 @@ public class OrderServiceImp implements OrderService {
 		return subtotal;
 	}
 	
+	@Override
 	public double total(double product, double product2, double newProduct) {
 		double total = 0;
 		total = total + (product * Data.detailOrder.getQuantityOrder()) ;
@@ -104,39 +110,5 @@ public class OrderServiceImp implements OrderService {
 		
 		return total;
 	}
-	
-
-	@Override
-	public Invoice invoice(double total) {
-		
-		Data.invoice.setIdInvoice(1l);
-		
-		var iva  = Data.order1.getSubtotal() * 0.19;
-		Data.invoice.setSubTotalIva(Data.order1.getSubtotal()+ iva);
-		
-		if	(Data.order1.getSubtotal() >= 100000.0 || Data.order1.getSubtotal() == 0) {
-			Data.invoice.setHomeValue(0);
-		}else {
-			Data.invoice.setHomeValue(1000.0);
-		}
-		Data.invoice.setTotal(total+ iva +Data.invoice.getHomeValue());
-		return Data.invoice;
-	}
-	
-	
-	@Override
-	public Boolean validateDate(Order order , int time) {
-		int comparateMS = 3600000 * time ;
-		Date dateActual = new Date();
-		Date dateOrder = order.getOrderDate();
-		if(dateActual.getTime() - dateOrder.getTime() < comparateMS) {
-			return true;
-		}
-		
-		return false;
-	}
-	
-	
-	
 	
 }

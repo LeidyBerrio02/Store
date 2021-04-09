@@ -9,6 +9,8 @@ import com.store.demo.model.Product;
 public interface OrderService {
 	
 	ArrayList<Order> orders();
-	Boolean validateDate(Order order , int time);
-	Invoice invoice(double total);
+	//Invoice invoice(double total);
+	double subtotal();
+	double total(double product, double product2, double newProduct);
+	//Boolean validateDate(Order order , int time);
 }

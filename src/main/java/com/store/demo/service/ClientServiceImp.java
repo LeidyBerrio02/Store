@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.store.demo.model.Client;
 import com.store.demo.repository.Data;
+import com.store.demo.repository.GenerateDate;
 
 @Service
 public class ClientServiceImp implements ClientService {
@@ -44,7 +45,7 @@ public class ClientServiceImp implements ClientService {
 	
 	@Override
 	public void updateClients(Client client) {
-		if (orderService.validateDate(Data.order1, 5)) {
+		if (GenerateDate.validateDate(Data.order1, 5)) {
 			Data.clientList.add(client);
 			Data.orderList.add(Data.order1);
 		}
@@ -52,7 +53,7 @@ public class ClientServiceImp implements ClientService {
 	
 	@Override
 	public Boolean changeStatus() {
-		if (orderService.validateDate(Data.order1, 12)) {
+		if (GenerateDate.validateDate(Data.order1, 12)) {
 			Data.order1.setStatus("Delete");
 			Data.orderList.add(Data.order1);
 			return true;

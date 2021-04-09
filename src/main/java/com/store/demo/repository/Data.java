@@ -31,7 +31,7 @@ public class Data {
 	public static DetailOrder detailOrder2 = new DetailOrder();
 	public static Order order1 = new Order();
 	public static Invoice invoice = new Invoice();
-
+	
 	/*
 	public static ArrayList<Product> listP() {
 		productList.add(product1);
