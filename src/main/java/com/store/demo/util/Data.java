@@ -23,11 +23,13 @@ public class Data {
 
 	@Autowired
 	private static InvoiceService invoiceService;
-	
-	public static List<Client> clientList = generateClient();
-	public static List<Order> orderList = new ArrayList<Order>();
-	public static List<Order> orderList1 = orderService.orders();
-	public static List<Product> productList = generateProducts();
+
+
+	public static List<Client> clientListGenerate = generateClient();
+	public static ArrayList<Client> clientList = new ArrayList<Client>();
+	public static ArrayList<Order> orderList = new ArrayList<Order>();
+	public static ArrayList<Order> orderList1 = new ArrayList<Order>(); 
+	public static ArrayList<Product> productList = new  ArrayList<Product>();
 	public static ArrayList<DetailOrder> detailList = new ArrayList<DetailOrder>();
 	public static ArrayList<DetailOrder> detailList2 = new ArrayList<DetailOrder>();
 	public static ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
@@ -43,21 +45,14 @@ public class Data {
 	public static Order order1 = new Order();
 	public static Invoice invoice = new Invoice();
 	
-	public static List<Order> generateOrder(){
-		List<Order> orderList = new ArrayList<Order>();
-		Order order1 = new Order ();
-		orderList.add(order1);
-		return  orderList;
-	}
-	
 	public static List<Client> generateClient() {
 		List<Client> listClient = new ArrayList<Client>();
-		Client client = new Client(1l, "12345", "Ana", "Cr 11# 14-08", orders());
+		Client client = new Client(1l, "12345", "Ana", "Cr 11# 14-08");
 		listClient.add(client);
 		return listClient;
 	}
 	
-	
+	/*
 	public static List<Product> generateProducts(){
 		 List<Product> productList = new ArrayList<Product>();
 		 Product product1 = new Product(1l,"TV",75000.0,5);
@@ -70,69 +65,8 @@ public class Data {
 		 productList.add(product4);
 		 return productList;
 	}
+	*/
 	
-	public static List<Order> orders() {	
-		//Add Order		
-		Date smp = null;
-		try {
-			smp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse("2021-03-08 05:30:22.333");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// Order list 1, client 1
-		
-		
-		Data.order1.setIdOrder(1L);
-		//Fecha ingresada Data.order1.setOrderDate(smp);
-		Data.order1.setOrderDate(new Date());
-		//si active se cambia por "Delete" significa que se elimino el pedido y se le devolvera el 10
-		Data.order1.setStatus("Active");
-		
-
-		/////////////////// detail
-		Data.detailOrder.setId(1l);
-		Data.detailOrder.setOrder(Data.order1);
-		Data.detailOrder.setQuantityOrder(1);
-		Data.detailOrder.setProduct(Data.product1);
-		//
-		
-		Data.detailOrder1.setId(2l);
-		Data.detailOrder1.setOrder(Data.order1);
-		Data.detailOrder1.setQuantityOrder(1);
-		Data.detailOrder1.setProduct(Data.product3);
-
-		//En caso de agg nuevo producto
-		Data.detailOrder2.setId(3l);
-		Data.detailOrder2.setOrder(Data.order1);
-		Data.detailOrder2.setQuantityOrder(1);
-		Data.detailOrder2.setProduct(new Product());
-		
-		//agg detalles de pedido
-		Data.detailList.add(Data.detailOrder);
-		Data.detailList.add(Data.detailOrder1);
-		Data.detailList.add(Data.detailOrder2);
-
-		
-		Data.order1.setSubtotal(orderService.subtotal());
-		Data.order1.setDetailOrder(Data.detailList);
-		
-		double product = Data.detailOrder.getProduct().getPrice();
-		double product2 = Data.detailOrder1.getProduct().getPrice();
-		double newProduct = Data.detailOrder2.getProduct().getPrice();
-		
-		//invoice 
-		Invoice in = invoiceService.invoice(orderService.total(product, product2, newProduct));
-		Data.order1.setInvoice(in);
-		
-		//descuenta los productos del inventario del almacen que fueron enviados al pedido (Order)
-		orderService.discountQuantity();					
-		Data.orderList.add(Data.order1);
-		
-		return Data.orderList;
-		
-	}
 	
 	
 	//public static List<>

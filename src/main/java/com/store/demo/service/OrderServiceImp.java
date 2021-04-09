@@ -43,7 +43,7 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder.setId(1l);
 		Data.detailOrder.setOrder(Data.order1);
 		Data.detailOrder.setQuantityOrder(1);
-		Data.detailOrder.setProduct(Data.productList.get(0));
+		Data.detailOrder.setProduct(Data.product1);
 		//
 		
 		Data.detailOrder1.setId(2l);
@@ -78,7 +78,7 @@ public class OrderServiceImp implements OrderService {
 		discountQuantity();					
 		Data.orderList.add(Data.order1);
 		
-		return (ArrayList<Order>) Data.orderList;
+		return Data.orderList;
 		
 	}
 	

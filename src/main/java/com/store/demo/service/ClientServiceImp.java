@@ -29,18 +29,19 @@ public class ClientServiceImp implements ClientService {
 	//
 	@Override
 	public void addClient() {
-		/*Client client1 = new Client();
-		client1.setIdClient(1l);
-		client1.setCc("12345");
-		client1.setName("Ana");
-		client1.setAddress("Cr 11# 14-08");
-		client1.setOrders(orderService.orders());*/
-		 
+		Data.client1 = new Client();
+		Data.client1.setIdClient(1l);
+		Data.client1.setCc("12345");
+		Data.client1.setName("Ana");
+		Data.client1.setAddress("Cr 11# 14-08");
+		Data.client1.setOrders(orderService.orders());
+		Data.clientList.add(Data.client1);
 	}
 	
 	//
 	@Override
 	public List<Client> listClients() {
+		addClient();
 		/*if(Data.order1.getStatus()=="Delete") {
 			bill();
 		}*/
