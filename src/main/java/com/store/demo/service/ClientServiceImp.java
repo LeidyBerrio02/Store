@@ -18,6 +18,7 @@ public class ClientServiceImp implements ClientService{
 
 	@Override
 	public Boolean createClient(Client client) {
+		
 		if (client != null) {
 			Data.clientList.add(client);
 			return true;
@@ -25,7 +26,7 @@ public class ClientServiceImp implements ClientService{
 		return false;
 	}
 	
-	
+	@Override
 	public ArrayList<Client> listClients(){
 
 		Client client1 = new Client();
@@ -69,7 +70,9 @@ public class ClientServiceImp implements ClientService{
 
 	@Override
 	public Client updateClient(Client client) {
+		if	(orderService.validateDate(Data.order1, 5)) {
 		Data.clientList.add(client);
+		}
 		return null;
 	}
 	

@@ -8,5 +8,6 @@ public interface OrderService {
 	
 	ArrayList<Order> orders();
 	Boolean create(Order order);
+	Boolean validateDate(Order order , int time);
 
 }

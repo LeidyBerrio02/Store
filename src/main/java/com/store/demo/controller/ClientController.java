@@ -16,6 +16,7 @@ import com.store.demo.repository.Data;
 import com.store.demo.service.ClientService;
 import com.store.demo.service.OrderService;
 
+
 @RestController
 @RequestMapping("/api/clients")
 public class ClientController {
@@ -39,6 +40,7 @@ public class ClientController {
 	@PutMapping("/updateProducts")
 	public void addProductNew(@RequestBody Client client) {
 		clientService.updateClient(client);
+
 	}
 	
 	/*@GetMapping("/addProductInlist")

@@ -7,7 +7,7 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
-import com.store.demo.model.DetailOrder;
+
 import com.store.demo.model.Invoice;
 import com.store.demo.model.Order;
 import com.store.demo.repository.Data;
@@ -35,65 +35,68 @@ public class OrderServiceImp implements OrderService {
 		
 		// Order list 1, client 1
 		
-		Order order1 = new Order();
-		order1.setIdOrder(1L);
-		order1.setOrderDate(smp);
-		order1.setStatus("Active");
+		
+		Data.order1.setIdOrder(1L);
+		Data.order1.setOrderDate(smp);
+		Data.order1.setStatus("Active");
 		
 
 		/////////////////// detail
-		DetailOrder detailOrder = new DetailOrder();
-		detailOrder.setId(1l);
-		detailOrder.setOrder(order1);
-		detailOrder.setProduct(Data.product1);
-		detailOrder.setQuantityOrder(1);
+		
+		Data.detailOrder.setId(1l);
+		Data.detailOrder.setOrder(Data.order1);
+		Data.detailOrder.setProduct(Data.product1);
+		Data.detailOrder.setQuantityOrder(1);
 		double total = 0;
-		total = total + (Data.product1.getPrice() * detailOrder.getQuantityOrder()) ;
-		detailOrder.setTotal(total);
+		total = total + (Data.product1.getPrice() * Data.detailOrder.getQuantityOrder()) ;
+		Data.detailOrder.setTotal(total);
 		
 		//
-		DetailOrder detailOrder1 = new DetailOrder();
-		detailOrder1.setId(2l);
-		detailOrder1.setOrder(order1);
-		detailOrder1.setProduct(Data.product4);
-		detailOrder1.setQuantityOrder(2);
-		double total2 = 0;
-		total2 = (Data.product4.getPrice() * detailOrder1.getQuantityOrder());
-		detailOrder1.setTotal(total2);
-		total = total + total2;
-		Data.detailList.add(detailOrder);
-		Data.detailList.add(detailOrder1);
 		
-		order1.setSubtotal((Data.product1.getPrice() * detailOrder.getQuantityOrder())+ (Data.product4.getPrice() * detailOrder1.getQuantityOrder()));
-		order1.setDetailOrder(Data.detailList);
+		Data.detailOrder1.setId(2l);
+		Data.detailOrder1.setOrder(Data.order1);
+		Data.detailOrder1.setProduct(Data.product4);
+		Data.detailOrder1.setQuantityOrder(2);
+		
+		double total2 = 0;
+		total2 = (Data.product4.getPrice() * Data.detailOrder1.getQuantityOrder());
+		Data.detailOrder1.setTotal(total2);
+		total = total + total2;
+		
+		Data.detailList.add(Data.detailOrder);
+		Data.detailList.add(Data.detailOrder1);
+		
+		Data.order1.setSubtotal((Data.product1.getPrice() * Data.detailOrder.getQuantityOrder())+ (Data.product4.getPrice() * Data.detailOrder1.getQuantityOrder()));
+		Data.order1.setDetailOrder(Data.detailList);
 		
 		//invoice 
-		Invoice in = invoice(order1 , total);
-		order1.setInvoice(in);
+		Invoice in = invoice(Data.order1 , total);
+		Data.order1.setInvoice(in);
 		
 		//Add Order
-		Data.orderList.add(order1);
+		Data.orderList.add(Data.order1);
 		
 		return Data.orderList;
 	}
 	
 
 	public static Invoice invoice(Order order1, double total) {
-		Invoice invoice = new Invoice();
-		invoice.setIdInvoice(1l);
+		
+		Data.invoice.setIdInvoice(1l);
 		
 		var iva  = order1.getSubtotal() * 0.19;
-		invoice.setSubTotalIva(order1.getSubtotal()+ iva);
+		Data.invoice.setSubTotalIva(order1.getSubtotal()+ iva);
 		
 		if	(order1.getSubtotal() >= 100000) {
-			invoice.setHomeValue(0);
+			Data.invoice.setHomeValue(0);
 		}else {
-			invoice.setHomeValue(1000.0);
+			Data.invoice.setHomeValue(1000.0);
 		}
-		invoice.setTotal(total+ iva +invoice.getHomeValue());
-		return invoice;
+		Data.invoice.setTotal(total+ iva +Data.invoice.getHomeValue());
+		return Data.invoice;
 	}
 	
+	@Override
 	public Boolean validateDate(Order order , int time) {
 		int comparateMS = 3600000 * time ;
 		Date dateActual = new Date();
