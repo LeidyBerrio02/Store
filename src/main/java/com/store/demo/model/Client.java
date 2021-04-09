@@ -14,6 +14,9 @@ public class Client {
 
 	private List<Order> orders;
 	
+	//si el pedido se cancela se devuelve el 10% del valor del pedido
+	private double bill;
+	
 	public Long getIdClient() {
 		return idClient;
 	}
@@ -54,12 +57,13 @@ public class Client {
 		this.orders = orders;
 	}
 
-	@Override
-	public String toString() {
-		return "Client [idClient=" + idClient + ", cc=" + cc + ", name=" + name + ", address=" + address + ", orders="
-				+ orders + "]";
+	public double getBill() {
+		return bill;
 	}
-	
-	
+
+	public void setBill(double bill) {
+		this.bill = bill;
+	}
+
 
 }

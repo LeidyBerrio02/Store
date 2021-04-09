@@ -25,6 +25,7 @@ public class Data {
 	public static Product product2 = new Product(2l,"Headphones",60000.0,3);
 	public static Product product3 = new Product(3l,"Xiami redmi 8",20000.0,5);
 	public static Product product4 = new Product(4l,"iPhone",30000.0,3);
+	public static Client client1 = new Client();
 	public static DetailOrder detailOrder = new DetailOrder();
 	public static DetailOrder detailOrder1 = new DetailOrder();
 	public static DetailOrder detailOrder2 = new DetailOrder();

@@ -30,14 +30,14 @@ public class ClientServiceImp implements ClientService{
 	@Override
 	public ArrayList<Client> listClients(){
 
-		Client client1 = new Client();
-		client1.setIdClient(1L);
-		client1.setCc("12345");
-		client1.setName("Ana");
-		client1.setAddress("Cr 11# 14-08");
-		client1.setOrders(orderService.orders());
 		
-		Data.clientList.add(client1);		
+		Data.client1.setIdClient(1L);
+		Data.client1.setCc("12345");
+		Data.client1.setName("Ana");
+		Data.client1.setAddress("Cr 11# 14-08");
+		Data.client1.setOrders(orderService.orders());
+		
+		Data.clientList.add(Data.client1);		
 		
 		return Data.clientList;
 	}
@@ -67,6 +67,9 @@ public class ClientServiceImp implements ClientService{
 		if(orderService.validateDate(Data.order1, 12)) {
 		Data.order1.setStatus("DELETE");
 		Data.orderList.add(Data.order1);
+		double ret = Data.order1.getSubtotal();
+		ret = ret * 0.10;
+		Data.client1.setBill(ret);
 		}
 	}
 	
