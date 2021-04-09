@@ -10,5 +10,5 @@ public interface OrderService {
 	
 	ArrayList<Order> orders();
 	Boolean validateDate(Order order , int time);
-	Invoice invoice(Order order1, double total);
+	Invoice invoice(double total);
 }

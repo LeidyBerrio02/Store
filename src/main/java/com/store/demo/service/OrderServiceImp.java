@@ -37,16 +37,24 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder.setOrder(Data.order1);
 		Data.detailOrder.setQuantityOrder(1);
 		//Data.detailOrder.setProduct(Data.product1);
-		Data.detailOrder.setProduct(new Product());
+		Data.detailOrder.setProduct(Data.product1);
 		//
 		
 		Data.detailOrder1.setId(2l);
 		Data.detailOrder1.setOrder(Data.order1);
-		Data.detailOrder1.setQuantityOrder(2);
-		Data.detailOrder1.setProduct(new Product());
+		Data.detailOrder1.setQuantityOrder(1);
+		Data.detailOrder1.setProduct(Data.product2);
+
+		//En caso de agg nuevo producto
+		Data.detailOrder2.setId(3l);
+		Data.detailOrder2.setOrder(Data.order1);
+		Data.detailOrder2.setQuantityOrder(1);
+		Data.detailOrder2.setProduct(Data.product3);
 		
+		//agg detalles de pedido
 		Data.detailList.add(Data.detailOrder);
 		Data.detailList.add(Data.detailOrder1);
+		Data.detailList.add(Data.detailOrder2);
 
 		
 		Data.order1.setSubtotal(subtotal());
@@ -54,47 +62,56 @@ public class OrderServiceImp implements OrderService {
 		
 		double product = Data.detailOrder.getProduct().getPrice();
 		double product2 = Data.detailOrder1.getProduct().getPrice();
+		double newProduct = Data.detailOrder2.getProduct().getPrice();
 		
 		//invoice 
-		Invoice in = invoice(Data.order1 , total(product, product2) );
+		Invoice in = invoice(total(product, product2, newProduct));
 		Data.order1.setInvoice(in);
 						
 		//Add Order
 		Data.orderList.add(Data.order1);
 		
 		return Data.orderList;
+		
 	}
+	
 	
 	public double subtotal() {
 		double subtotal = 0;
 		subtotal =+ Data.detailOrder.getProduct().getPrice() * Data.detailOrder.getProduct().getQuantityStock();
 		subtotal =+ Data.detailOrder1.getProduct().getPrice() * Data.detailOrder1.getProduct().getQuantityStock();
+		subtotal =+ Data.detailOrder2.getProduct().getPrice() * Data.detailOrder2.getProduct().getQuantityStock();
 		return subtotal;
 	}
 	
-	public double total(double product, double product2) {
+	public double total(double product, double product2, double newProduct) {
 		double total = 0;
 		total = total + (product * Data.detailOrder.getQuantityOrder()) ;
 		Data.detailOrder.setTotal(total);
-		double total2 = 0;
 		
+		double total2 = 0;
 		total2 = (product2 * Data.detailOrder1.getQuantityOrder());
 		Data.detailOrder1.setTotal(total2);
-		total = total + total2;
+		
+		double total3 = 0;
+		total3 = (newProduct * Data.detailOrder2.getQuantityOrder());
+		Data.detailOrder2.setTotal(total3);
+		
+		total = total + total2 + total3;
 		
 		return total;
 	}
 	
 
 	@Override
-	public Invoice invoice(Order order1, double total) {
+	public Invoice invoice(double total) {
 		
 		Data.invoice.setIdInvoice(1l);
 		
-		var iva  = order1.getSubtotal() * 0.19;
-		Data.invoice.setSubTotalIva(order1.getSubtotal()+ iva);
+		var iva  = Data.order1.getSubtotal() * 0.19;
+		Data.invoice.setSubTotalIva(Data.order1.getSubtotal()+ iva);
 		
-		if	(order1.getSubtotal() >= 100000) {
+		if	(Data.order1.getSubtotal() >= 100000.0 || Data.order1.getSubtotal() == 0) {
 			Data.invoice.setHomeValue(0);
 		}else {
 			Data.invoice.setHomeValue(1000.0);
@@ -102,6 +119,7 @@ public class OrderServiceImp implements OrderService {
 		Data.invoice.setTotal(total+ iva +Data.invoice.getHomeValue());
 		return Data.invoice;
 	}
+	
 	
 	@Override
 	public Boolean validateDate(Order order , int time) {
