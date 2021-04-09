@@ -18,7 +18,7 @@ public class OrderServiceImp implements OrderService {
 	
 	@Autowired
 	private InvoiceService invoiceService;
-	
+
 	
 	public ArrayList<Order> orders() {	
 		//Add Order		
@@ -56,7 +56,7 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder2.setId(3l);
 		Data.detailOrder2.setOrder(Data.order1);
 		Data.detailOrder2.setQuantityOrder(1);
-		Data.detailOrder2.setProduct(new Product());
+		Data.detailOrder2.setProduct(Data.product4);
 		
 		//agg detalles de pedido
 		Data.detailList.add(Data.detailOrder);
@@ -130,22 +130,26 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder2.getProduct().setQuantityStock(rest3);
 	}
 
+	/*
 	@Autowired
 	public Boolean updateOrder(Order order, Long idOrder) {
-		if(GenerateDate.validateDate(order, 5)){
+		
+		if(GenerateDate.validateDate(Data.order1, 5)){
 		Order orderDB = new Order();
-		if	(Data.order1.getIdOrder().equals(idOrder) && Data.order1.getSubtotal() > order.getSubtotal()) {
+		if	(order !=null && Data.order1.getIdOrder().equals(idOrder) && Data.order1.getSubtotal() >= order.getSubtotal()) {
 			orderDB.setIdOrder(idOrder);
 			orderDB.setOrderDate(new Date());
 			orderDB.setSubtotal(order.getSubtotal());
 			orderDB.setStatus("Edited");
 			orderDB.setInvoice(order.getInvoice());
 			orderDB.setDetailOrder(order.getDetailOrder());
-			Data.orderList.set(0, orderDB);
+			//Data.orderList.set(0, orderDB);
+				//Data.orderList.add(order);
 		}
 		return true;
 	}
 	return false;
-}
 	
+}
+	*/
 }

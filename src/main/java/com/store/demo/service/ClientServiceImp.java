@@ -75,11 +75,11 @@ public class ClientServiceImp implements ClientService {
 			clientArray.setCc(client.getCc());
 			clientArray.setAddress(client.getAddress());
 			clientArray.setOrders(orderService.orders());
-			//Data.clientList.add(clientArray);
+			Data.clientList.add(clientArray);
 			if(Data.order1.getStatus()=="Delete") {
 				bill();
 			}
-			Data.clientList.set(0,clientArray);
+			//Data.clientList.add(clientArray);
 			return true;
 		}
 		
