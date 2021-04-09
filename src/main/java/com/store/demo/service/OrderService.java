@@ -14,4 +14,5 @@ public interface OrderService {
 	double total(double product, double product2, double newProduct);
 	//Boolean validateDate(Order order , int time);
 	void discountQuantity();
+	void updateOrder(Order order, Long idOrder);
 }

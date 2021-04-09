@@ -1,6 +1,5 @@
 package com.store.demo.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,31 +41,24 @@ public class ClientServiceImp implements ClientService {
 	@Override
 	public List<Client> listClients() {
 		addClient();
-		/*if(Data.order1.getStatus()=="Delete") {
+		if(Data.order1.getStatus()=="Delete") {
 			bill();
-		}*/
+		}
 		return Data.clientList;
 	}
 	//
-	
-	@Override
-	public void updateClients(Client client) {
-		if (GenerateDate.validateDate(Data.order1, 5)) {
-			Data.clientList.add(client);
-			Data.orderList.add(Data.order1);
-		}
-	}
-	
 	@Override
 	public Boolean changeStatus() {
 		if (GenerateDate.validateDate(Data.order1, 12)) {
 			Data.order1.setStatus("Delete");
 			Data.orderList.add(Data.order1);
+			Data.orderList.remove(0);
 			return true;
 		}
 		return false;
 	}
 	
+	@Override
 	public void bill() {
 		double ret = Data.order1.getSubtotal();
 		ret = ret * 0.10;
@@ -75,6 +67,7 @@ public class ClientServiceImp implements ClientService {
 
 	@Override
 	public Boolean updateClient(Client client) {
+		if (GenerateDate.validateDate(Data.order1,5)){
 		Client clientArray = new Client();
 		if	(client != null) {
 			searchClient(client);
@@ -86,15 +79,18 @@ public class ClientServiceImp implements ClientService {
 			if(Data.order1.getStatus()=="Delete") {
 				bill();
 			}
+			Data.clientList.set(0,clientArray);
 			return true;
 		}
+		
+	}
 		return false;
 	}
 
 	@Override
 	public Long searchClient(Client client) {
 		for(Client cli : Data.clientList) {
-			if(cli.getIdClient()==client.getIdClient()) {
+			if(cli.getIdClient().equals(client.getIdClient())) {
 				return client.getIdClient();
 			}
 		}

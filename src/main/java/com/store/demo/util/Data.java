@@ -1,30 +1,16 @@
 package com.store.demo.util;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.store.demo.model.Client;
 import com.store.demo.model.DetailOrder;
 import com.store.demo.model.Invoice;
 import com.store.demo.model.Order;
 import com.store.demo.model.Product;
-import com.store.demo.service.InvoiceService;
-import com.store.demo.service.OrderService;
 
 public class Data {
 	
-	@Autowired
-	private static OrderService orderService;
-
-	@Autowired
-	private static InvoiceService invoiceService;
-
-
 	public static List<Client> clientListGenerate = generateClient();
 	public static ArrayList<Client> clientList = new ArrayList<Client>();
 	public static ArrayList<Order> orderList = new ArrayList<Order>();

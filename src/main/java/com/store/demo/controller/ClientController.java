@@ -38,15 +38,11 @@ public class ClientController {
 		return clientService.updateClient(client);
 	}
 	
-	@PostMapping("/delete")
+	@GetMapping("/delete")
 	public void delete() {
 		clientService.changeStatus();
 	}
 	
-	@PutMapping("/updateClients")
-	public void update(@RequestBody Client client) {
-		clientService.updateClients(client);
-	}
 	/*@GetMapping("/addProductInlist")
 	public void addProductExisted() {
 		orderService.addProductAtDetail(Data.product3, 2);

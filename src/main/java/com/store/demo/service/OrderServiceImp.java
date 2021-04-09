@@ -18,7 +18,7 @@ public class OrderServiceImp implements OrderService {
 	@Autowired
 	private InvoiceService invoiceService;
 	
-	@Override
+	
 	public ArrayList<Order> orders() {	
 		//Add Order		
 		Date smp = null;
@@ -34,7 +34,7 @@ public class OrderServiceImp implements OrderService {
 		
 		Data.order1.setIdOrder(1L);
 		//Fecha ingresada Data.order1.setOrderDate(smp);
-		Data.order1.setOrderDate(new Date());
+		Data.order1.setOrderDate(smp);
 		//si active se cambia por "Delete" significa que se elimino el pedido y se le devolvera el 10
 		Data.order1.setStatus("Active");
 		
@@ -129,5 +129,19 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder2.getProduct().setQuantityStock(rest3);
 	}
 
+	public void updateOrder(Order order, Long idOrder) {
+		Order orderDB = new Order();
+		if	(Data.order1.getIdOrder().equals(idOrder)) {
+			orderDB.setIdOrder(idOrder);
+			orderDB.setOrderDate(new Date());
+			orderDB.setSubtotal(order.getSubtotal());
+			orderDB.setStatus("Edited");
+			orderDB.setInvoice(order.getInvoice());
+			orderDB.setDetailOrder(order.getDetailOrder());
+			Data.orderList.set(0, orderDB);
+		}
+	}
+	
+	
 
 }

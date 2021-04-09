@@ -1,6 +1,5 @@
 package com.store.demo.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
@@ -30,25 +29,6 @@ public class Client {
 
 	public Client() {
 		super();
-	}
-
-	public Client(Long idClient, String cc, String name, String address, List<Order> orderList1) {
-		super();
-		this.idClient = idClient;
-		this.cc = cc;
-		this.name = name;
-		this.address = address;
-		this.orders = orderList1;
-	}
-
-	public Client(Long idClient, String cc, String name, String address, ArrayList<Order> orders, double bill) {
-		super();
-		this.idClient = idClient;
-		this.cc = cc;
-		this.name = name;
-		this.address = address;
-		this.orders = orders;
-		this.bill = bill;
 	}
 
 	public Long getIdClient() {
