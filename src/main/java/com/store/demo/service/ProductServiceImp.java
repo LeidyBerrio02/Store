@@ -29,6 +29,8 @@ public class ProductServiceImp implements ProductService{
 		return false;
 	}
 	
+
+
 	@Override
 	public Boolean updateProduct(Product product, Long idProduct) {		
 		Product productArray = new Product();
@@ -55,5 +57,3 @@ public class ProductServiceImp implements ProductService{
 		return null;
 	}
 }
-
-

@@ -33,8 +33,8 @@ public class ClientController {
 	}
 	
 	@PutMapping("/updateClient")
-	public void addProductNew(@RequestBody Client client) {
-		clientService.updateClient(client);
+	public Boolean addProductNew(@RequestBody Client client) {
+		return clientService.updateClient(client);
 	}
 	
 	@PostMapping("/delete")
@@ -42,11 +42,10 @@ public class ClientController {
 		clientService.changeStatus();
 	}
 	
-	@PutMapping("/update/{idClient}")
-	public Boolean update(@RequestBody Client client, @PathVariable Long idClient) {
-		return clientService.update(client, idClient);
+	@PutMapping("/updateClients")
+	public void update(@RequestBody Client client) {
+		clientService.updateClients(client);
 	}
-	
 	/*@GetMapping("/addProductInlist")
 	public void addProductExisted() {
 		orderService.addProductAtDetail(Data.product3, 2);

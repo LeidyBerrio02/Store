@@ -7,11 +7,11 @@ import com.store.demo.model.Client;
 public interface ClientService {
 
 	ArrayList<Client> listClients();
-	void updateClient(Client client);
-	Boolean update(Client client, Long idClient);
 	Boolean createClient(Client client);
+	Boolean updateClient(Client client);
 	Boolean changeStatus();
 	Long searchClient(Client client);
+	void updateClients(Client client);
 	
 	
 }

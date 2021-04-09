@@ -30,10 +30,9 @@ public class ProductController {
 	private Boolean create(@RequestBody Product product){
 		return productService.create(product);
 	}
-	
+
 	@PutMapping("/update/{idProduct}")
 	private Boolean update(@RequestBody Product product, @PathVariable Long idProduct){
 		return productService.updateProduct(product, idProduct);
 	}
-	
 }

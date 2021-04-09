@@ -32,35 +32,42 @@ public class ClientServiceImp implements ClientService {
 		Data.client1.setName("Ana");
 		Data.client1.setAddress("Cr 11# 14-08");
 		Data.client1.setOrders(orderService.orders());
-
+		if(Data.order1.getStatus()=="Delete") {
+			bill();
+		}
+		
 		Data.clientList.add(Data.client1);
+		
 
 		return Data.clientList;
 	}
-
+	
 	@Override
-	public void updateClient(Client client) {
+	public void updateClients(Client client) {
 		if (orderService.validateDate(Data.order1, 5)) {
 			Data.clientList.add(client);
 			Data.orderList.add(Data.order1);
 		}
 	}
-
+	
 	@Override
 	public Boolean changeStatus() {
-		if (orderService.validateDate(Data.order1, 12)) {
-			Data.order1.setStatus("DELETE");
+		//if (orderService.validateDate(Data.order1, 12)) {
+			Data.order1.setStatus("Delete");
 			Data.orderList.add(Data.order1);
-			double ret = Data.order1.getSubtotal();
-			ret = ret * 0.10;
-			Data.client1.setBill(ret);
 			return true;
-		}
-		return false;
+		//}
+		//return false;
+	}
+	
+	public void bill() {
+		double ret = Data.order1.getSubtotal();
+		ret = ret * 0.10;
+		Data.client1.setBill(ret);
 	}
 
 	@Override
-	public Boolean update(Client client, Long idClient) {
+	public Boolean updateClient(Client client) {
 		Client clientArray = new Client();
 		if	(client != null) {
 			searchClient(client);
