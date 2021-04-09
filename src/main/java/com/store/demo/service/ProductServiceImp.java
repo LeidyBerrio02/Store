@@ -33,8 +33,8 @@ public class ProductServiceImp implements ProductService{
 	public Boolean updateProduct(Product product, Long idProduct) {		
 		Product productArray = new Product();
 		if(product != null) {
-		
-			productArray.setIdProduct(idProduct);
+			search(product);
+			productArray.setIdProduct(product.getIdProduct());
 			productArray.setNameProduct(product.getNameProduct());
 			productArray.setPrice(product.getPrice());
 			productArray.setQuantityStock(product.getQuantityStock());
@@ -45,5 +45,14 @@ public class ProductServiceImp implements ProductService{
 		return false;
 	}
 	
-
+	public Long search (Product product) {
+		for (Product pro : Data.productList) {
+			if (pro.getIdProduct()==product.getIdProduct()) {
+				return product.getIdProduct();
+			}
+		}
+		return null;
+	}
 }
+
+
