@@ -24,10 +24,10 @@ public class OrderController {
 		return orderService.orders();
 	}
 	
-	
+	/*
 	@PostMapping("/create")
 	public Boolean listOrders(@RequestBody Order order){
 		return orderService.create(order);
 	}
-	
+	*/
 }

@@ -52,12 +52,12 @@ public class ClientServiceImp implements ClientService {
 	
 	@Override
 	public Boolean changeStatus() {
-		//if (orderService.validateDate(Data.order1, 12)) {
+		if (orderService.validateDate(Data.order1, 12)) {
 			Data.order1.setStatus("Delete");
 			Data.orderList.add(Data.order1);
 			return true;
-		//}
-		//return false;
+		}
+		return false;
 	}
 	
 	public void bill() {
@@ -77,6 +77,9 @@ public class ClientServiceImp implements ClientService {
 			clientArray.setAddress(client.getAddress());
 			clientArray.setOrders(client.getOrders());
 			Data.clientList.add(clientArray);
+			if(Data.order1.getStatus()=="Delete") {
+				bill();
+			}
 			return true;
 		}
 		return false;

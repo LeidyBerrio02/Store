@@ -14,15 +14,6 @@ import com.store.demo.model.Product;
 import com.store.demo.repository.Data;
 @Service
 public class OrderServiceImp implements OrderService {
-	
-	@Override
-	public Boolean create(Order order) {
-		if(order != null) {
-			Data.orderList.add(order);
-			return true;
-		}
-		return false;
-	}
 
 	@Override
 	public ArrayList<Order> orders() {
@@ -68,7 +59,7 @@ public class OrderServiceImp implements OrderService {
 						
 		//Add Order
 		Data.orderList.add(Data.order1);
-				
+		
 		return Data.orderList;
 	}
 	
