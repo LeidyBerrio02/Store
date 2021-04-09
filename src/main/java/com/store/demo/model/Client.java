@@ -13,24 +13,32 @@ public class Client {
 
 	private String address;
 
-	private ArrayList<Order> orders;
+	private List<Order> orders;
 	
 	//si el pedido se cancela se devuelve el 10% del valor del pedido
 	private double bill;
 	
 	
 
-	public Client() {
-		super();
-	}
-
-	public Client(Long idClient, String cc, String name, String address, ArrayList<Order> orders) {
+	public Client(Long idClient, String cc, String name, String address) {
 		super();
 		this.idClient = idClient;
 		this.cc = cc;
 		this.name = name;
 		this.address = address;
-		this.orders = orders;
+	}
+
+	public Client() {
+		super();
+	}
+
+	public Client(Long idClient, String cc, String name, String address, List<Order> orderList1) {
+		super();
+		this.idClient = idClient;
+		this.cc = cc;
+		this.name = name;
+		this.address = address;
+		this.orders = orderList1;
 	}
 
 	public Client(Long idClient, String cc, String name, String address, ArrayList<Order> orders, double bill) {
@@ -85,7 +93,7 @@ public class Client {
 		return bill;
 	}
 
-	public void setOrders(ArrayList<Order> orders) {
+	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
 

@@ -1,6 +1,7 @@
 package com.store.demo.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,18 +26,27 @@ public class ClientServiceImp implements ClientService {
 		return false;
 	}
 
+	//
 	@Override
-	public boolean addClient() {
-		return Data.clientList.add(Data.client1);
+	public void addClient() {
+		/*Client client1 = new Client();
+		client1.setIdClient(1l);
+		client1.setCc("12345");
+		client1.setName("Ana");
+		client1.setAddress("Cr 11# 14-08");
+		client1.setOrders(orderService.orders());*/
+		 
 	}
 	
+	//
 	@Override
-	public ArrayList<Client> listClients() {
+	public List<Client> listClients() {
 		/*if(Data.order1.getStatus()=="Delete") {
 			bill();
 		}*/
 		return Data.clientList;
 	}
+	//
 	
 	@Override
 	public void updateClients(Client client) {
@@ -71,8 +81,7 @@ public class ClientServiceImp implements ClientService {
 			clientArray.setName(client.getName());
 			clientArray.setCc(client.getCc());
 			clientArray.setAddress(client.getAddress());
-			clientArray.setOrders(client.getOrders());
-			Data.clientList.add(clientArray);
+			//Data.clientList.add(clientArray);
 			if(Data.order1.getStatus()=="Delete") {
 				bill();
 			}

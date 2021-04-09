@@ -1,6 +1,7 @@
 package com.store.demo.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,7 @@ import com.store.demo.util.Data;
 public class ProductServiceImp implements ProductService{
 	
 	@Override
-	public ArrayList<Product> listP() {
-		Data.productList.add(Data.product1);
-		Data.productList.add(Data.product2);
-		Data.productList.add(Data.product3);
-		Data.productList.add(Data.product4);
+	public List<Product> listP() {
 		return Data.productList;
 	}
 	

@@ -17,9 +17,10 @@ public class OrderServiceImp implements OrderService {
 	
 	@Autowired
 	private InvoiceService invoiceService;
-
+	
 	@Override
-	public ArrayList<Order> orders() {
+	public ArrayList<Order> orders() {	
+		//Add Order		
 		Date smp = null;
 		try {
 			smp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse("2021-03-08 05:30:22.333");
@@ -42,7 +43,7 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder.setId(1l);
 		Data.detailOrder.setOrder(Data.order1);
 		Data.detailOrder.setQuantityOrder(1);
-		Data.detailOrder.setProduct(Data.product1);
+		Data.detailOrder.setProduct(Data.productList.get(0));
 		//
 		
 		Data.detailOrder1.setId(2l);
@@ -74,12 +75,10 @@ public class OrderServiceImp implements OrderService {
 		Data.order1.setInvoice(in);
 		
 		//descuenta los productos del inventario del almacen que fueron enviados al pedido (Order)
-		discountQuantity();
-						
-		//Add Order
+		discountQuantity();					
 		Data.orderList.add(Data.order1);
 		
-		return Data.orderList;
+		return (ArrayList<Order>) Data.orderList;
 		
 	}
 	
@@ -129,5 +128,6 @@ public class OrderServiceImp implements OrderService {
 		rest3 = Data.detailOrder2.getProduct().getQuantityStock() - Data.detailOrder2.getQuantityOrder();
 		Data.detailOrder2.getProduct().setQuantityStock(rest3);
 	}
-	
+
+
 }

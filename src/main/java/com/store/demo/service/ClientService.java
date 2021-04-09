@@ -1,13 +1,14 @@
 package com.store.demo.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.store.demo.model.Client;
 
 public interface ClientService {
 
-	boolean addClient();
-	ArrayList<Client> listClients();
+	void addClient();
+	List<Client> listClients();
 	Boolean createClient(Client client);
 	Boolean updateClient(Client client);
 	Boolean changeStatus();
