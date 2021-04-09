@@ -9,4 +9,5 @@ public interface ProductService {
 	ArrayList<Product> listP();
 	Boolean updateProduct(Product product, Long idProduct);
 	Boolean create(Product product);
+	Long search (Product product);
 }

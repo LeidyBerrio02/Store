@@ -11,6 +11,7 @@ public interface ClientService {
 	Boolean update(Client client, Long idClient);
 	Boolean createClient(Client client);
 	Boolean changeStatus();
+	Long searchClient(Client client);
 	
 	
 }

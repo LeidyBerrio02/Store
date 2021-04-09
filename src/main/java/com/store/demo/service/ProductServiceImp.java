@@ -45,6 +45,7 @@ public class ProductServiceImp implements ProductService{
 		return false;
 	}
 	
+	@Override
 	public Long search (Product product) {
 		for (Product pro : Data.productList) {
 			if (pro.getIdProduct()==product.getIdProduct()) {

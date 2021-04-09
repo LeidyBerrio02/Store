@@ -61,18 +61,28 @@ public class ClientServiceImp implements ClientService {
 
 	@Override
 	public Boolean update(Client client, Long idClient) {
-		Long busqueda = (long) Data.clientList.indexOf(client);
-		Client clientA = new Client();
+		Client clientArray = new Client();
 		if	(client != null) {
-			clientA.setIdClient(busqueda);
-			clientA.setName(client.getName());
-			clientA.setCc(client.getCc());
-			clientA.setAddress(client.getAddress());
-			clientA.setOrders(client.getOrders());
-			Data.clientList.add(clientA);
+			searchClient(client);
+			clientArray.setIdClient(client.getIdClient());
+			clientArray.setName(client.getName());
+			clientArray.setCc(client.getCc());
+			clientArray.setAddress(client.getAddress());
+			clientArray.setOrders(client.getOrders());
+			Data.clientList.add(clientArray);
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Long searchClient(Client client) {
+		for(Client cli : Data.clientList) {
+			if(cli.getIdClient()==client.getIdClient()) {
+				return client.getIdClient();
+			}
+		}
+		return null;
 	}
 
 }

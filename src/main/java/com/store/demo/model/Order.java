@@ -6,9 +6,14 @@ import java.util.List;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Order {
 
 	private Long idOrder;
+	
+	@JsonIgnore
+	private Client client;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	//@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
@@ -23,6 +28,14 @@ public class Order {
 	private Invoice invoice;
 
 	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public Date getOrderDate() {
 		return orderDate;
 	}
