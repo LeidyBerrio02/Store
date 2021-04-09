@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.store.demo.model.Client;
-import com.store.demo.model.DetailOrder;
-import com.store.demo.model.Order;
-import com.store.demo.model.Product;
 import com.store.demo.repository.Data;
 
 @Service
@@ -42,17 +39,6 @@ public class ClientServiceImp implements ClientService{
 		return Data.clientList;
 	}
 	
-	public Boolean updateAllproducs(Client client, Order order) {
-		if	(orderService.validateDate(order, 5)) {
-			
-			Data.clientList.equals(client);
-			
-			return true;
-		}
-		
-		return false;
-	}
-
 
 	@Override
 	public void updateClient(Client client) {

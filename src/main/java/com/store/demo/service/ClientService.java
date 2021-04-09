@@ -3,7 +3,6 @@ package com.store.demo.service;
 import java.util.ArrayList;
 
 import com.store.demo.model.Client;
-import com.store.demo.model.Order;
 
 public interface ClientService {
 
