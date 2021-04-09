@@ -36,7 +36,6 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder.setId(1l);
 		Data.detailOrder.setOrder(Data.order1);
 		Data.detailOrder.setQuantityOrder(1);
-		//Data.detailOrder.setProduct(Data.product1);
 		Data.detailOrder.setProduct(Data.product1);
 		//
 		
@@ -49,7 +48,7 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder2.setId(3l);
 		Data.detailOrder2.setOrder(Data.order1);
 		Data.detailOrder2.setQuantityOrder(1);
-		Data.detailOrder2.setProduct(Data.product3);
+		Data.detailOrder2.setProduct(new Product());
 		
 		//agg detalles de pedido
 		Data.detailList.add(Data.detailOrder);
@@ -77,10 +76,14 @@ public class OrderServiceImp implements OrderService {
 	
 	
 	public double subtotal() {
+		double subt = 0;
+		subt =  Data.detailOrder.getProduct().getPrice() * Data.detailOrder.getQuantityOrder();
+		double subtotal1 = 0;
+		subtotal1 = Data.detailOrder1.getProduct().getPrice() * Data.detailOrder1.getQuantityOrder();
+		double subtotal2 = 0;
+		subtotal2 =  + Data.detailOrder2.getProduct().getPrice() * Data.detailOrder2.getQuantityOrder();
 		double subtotal = 0;
-		subtotal =+ Data.detailOrder.getProduct().getPrice() * Data.detailOrder.getProduct().getQuantityStock();
-		subtotal =+ Data.detailOrder1.getProduct().getPrice() * Data.detailOrder1.getProduct().getQuantityStock();
-		subtotal =+ Data.detailOrder2.getProduct().getPrice() * Data.detailOrder2.getProduct().getQuantityStock();
+		subtotal = subt + subtotal1 + subtotal2;
 		return subtotal;
 	}
 	
