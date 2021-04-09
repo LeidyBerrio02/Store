@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,16 +32,20 @@ public class ClientController {
 		return clientService.createClient(client);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping("/updateClient")
 	public void addProductNew(@RequestBody Client client) {
 		clientService.updateClient(client);
 	}
 	
-	@GetMapping("/delete")
+	@PostMapping("/delete")
 	public void delete() {
 		clientService.changeStatus();
 	}
 	
+	@PutMapping("/update/{idClient}")
+	public Boolean update(@RequestBody Client client, @PathVariable Long idClient) {
+		return clientService.update(client, idClient);
+	}
 	
 	/*@GetMapping("/addProductInlist")
 	public void addProductExisted() {

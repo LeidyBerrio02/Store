@@ -8,8 +8,9 @@ public interface ClientService {
 
 	ArrayList<Client> listClients();
 	void updateClient(Client client);
+	Boolean update(Client client, Long idClient);
 	Boolean createClient(Client client);
-	void changeStatus();
+	Boolean changeStatus();
 	
 	
 }

@@ -22,6 +22,7 @@ public class ProductServiceImp implements ProductService{
 	@Override
 	public Boolean create(Product product) {		
 		if(product != null) {
+			Data.detailOrder.setProduct(product);
 			Data.productList.add(product);
 			return true;
 		}

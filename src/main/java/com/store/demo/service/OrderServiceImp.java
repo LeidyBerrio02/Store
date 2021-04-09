@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.store.demo.model.Invoice;
 import com.store.demo.model.Order;
+import com.store.demo.model.Product;
 import com.store.demo.repository.Data;
 @Service
 public class OrderServiceImp implements OrderService {
@@ -47,21 +48,13 @@ public class OrderServiceImp implements OrderService {
 		Data.detailOrder.setOrder(Data.order1);
 		Data.detailOrder.setProduct(Data.product1);
 		Data.detailOrder.setQuantityOrder(1);
-		double total = 0;
-		total = total + (Data.product1.getPrice() * Data.detailOrder.getQuantityOrder()) ;
-		Data.detailOrder.setTotal(total);
-		
+				
 		//
 		
 		Data.detailOrder1.setId(2l);
 		Data.detailOrder1.setOrder(Data.order1);
 		Data.detailOrder1.setProduct(Data.product4);
 		Data.detailOrder1.setQuantityOrder(2);
-		
-		double total2 = 0;
-		total2 = (Data.product4.getPrice() * Data.detailOrder1.getQuantityOrder());
-		Data.detailOrder1.setTotal(total2);
-		total = total + total2;
 		
 		Data.detailList.add(Data.detailOrder);
 		Data.detailList.add(Data.detailOrder1);
@@ -70,13 +63,26 @@ public class OrderServiceImp implements OrderService {
 		Data.order1.setDetailOrder(Data.detailList);
 		
 		//invoice 
-		Invoice in = invoice(Data.order1 , total);
+		Invoice in = invoice(Data.order1 , total(Data.product1, Data.product4) );
 		Data.order1.setInvoice(in);
-		
+						
 		//Add Order
 		Data.orderList.add(Data.order1);
-		
+				
 		return Data.orderList;
+	}
+	
+	public double total(Product product, Product product2) {
+		double total = 0;
+		total = total + (product.getPrice() * Data.detailOrder.getQuantityOrder()) ;
+		Data.detailOrder.setTotal(total);
+		double total2 = 0;
+		
+		total2 = (product2.getPrice() * Data.detailOrder1.getQuantityOrder());
+		Data.detailOrder1.setTotal(total2);
+		total = total + total2;
+		
+		return total;
 	}
 	
 
